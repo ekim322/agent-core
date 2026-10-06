@@ -1,0 +1,6 @@
+[submodule "vendor/observability"]
+	path = vendor/observability
+	url = https://github.com/ekim322/observability.git
+[submodule ".agents"]
+	path = .agents
+	url = https://github.com/ekim322/coding-agent-skills.git

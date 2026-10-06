@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling==1.32.4"]
+build-backend = "hatchling.build"
+
+[project]
+name = "observability"
+version = "0.1.0"
+description = "Correlated structured logging, operation tracing, metrics and diagnostic queries"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["pydantic==2.13.5", "opentelemetry-sdk==1.44.0", "opentelemetry-exporter-otlp-proto-http==1.44.0"]
+
+[project.optional-dependencies]
+asgi = ["starlette==0.46.2"]
+dev = ["pytest==9.1.1"]
+
+[project.scripts]
+observability = "observability.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/observability"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

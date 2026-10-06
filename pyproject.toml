@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling==1.32.4"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agent-core"
+version = "0.1.0"
+description = "Reusable asynchronous agents, model runtime, streaming and observability"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "google-genai==2.25.0",
+  "httpx[http2]==0.28.1",
+  "httpx2==2.13.1",
+  "pydantic==2.13.5",
+  "pydantic-ai-slim[anthropic,google,openai,mcp]==2.54.0",
+  "typing-extensions==4.16.0",
+  "ulid-py==1.1.0",
+  "observability==0.1.0",
+  "opentelemetry-api==1.44.0",
+]
+
+[project.optional-dependencies]
+asgi = ["starlette==0.46.2"]
+sql = ["duckdb==1.5.5", "pyarrow==25.0.1", "sqlglot==30.19.0"]
+dev = ["pytest==9.1.1", "hatchling==1.32.4"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agent_core"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.uv.sources]
+observability = { path = "vendor/observability", editable = true }
